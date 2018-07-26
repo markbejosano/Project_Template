@@ -128,7 +128,7 @@ if __name__ == "__main__":
 		print("please pass folder name as argument")
 		exit()
 	foldername=sys.argv[1]
-	print('foldername==>{}).format(foldername) )
+	print('foldername==>{}'.format(foldername) )
 	main(foldername)
 	excel(foldername)
 	if exec_counter == testcases:
