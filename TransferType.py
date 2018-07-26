@@ -121,10 +121,10 @@ def excel(foldername):
 
 
 if __name__ == "__main__":
-	if len(sys.argv)==0:
-		print("please pass folder name as argument")
-		return
-	foldername=sys.argv[1]
+    if len(sys.argv)==0:
+	print("please pass folder name as argument")
+        exit()
+    foldername=sys.argv[1]
     main(foldername)
     excel(foldername)
     print "EXEC COUNTER: ", exec_counter
