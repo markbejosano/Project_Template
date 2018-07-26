@@ -1,7 +1,7 @@
 import os
 if len(sys.argv)==0:
-		print("please pass folder name as argument")
-		return
+    print("please pass folder name as argument")
+    exit()
 foldername=sys.argv[1]
 y = os.path.abspath(foldername+"/HTTPRequest.jmx")
 z = y.replace('\\','\\\\') 
