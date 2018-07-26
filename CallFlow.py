@@ -126,7 +126,7 @@ def excel(foldername):
 if __name__ == "__main__":
 	if len(sys.argv)==0:
 		print("please pass folder name as argument")
-		return
+		exit()
 	foldername=sys.argv[1]
 	main(foldername)
 	excel(foldername)
