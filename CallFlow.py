@@ -10,9 +10,9 @@ failed = 0
 testcases = 0#add on top (divider)
 exec_counter = 0 #thissss 
 overall_passed = 0 #thissss
-def main():
+def main(foldername):
     try:
-        file = os.stat("Data File.csv")
+        file = os.stat(foldername+"/Data File.csv")
         if file.st_size == 0:
             print "Data File is Empty"
     except OSError:
@@ -89,7 +89,7 @@ def compare(calllog1, callflow1, y, gen_result, gen_report):
 		# print y
 	exec_counter +=1 #---------------------
  
-def excel():
+def excel(foldername):
 	global gen_report
 	global testcases #thisss
 	global writetime
@@ -98,11 +98,11 @@ def excel():
 	writetime.write("Start Time= " + starttime + "\n")
 	gen_result = open("Call Flow Result.html", "a")
 	gen_report = open("report.html", "a")
-	gen_result.write("<html> <center><h1>Inbound Build Acceptance Automation</h1> <h3>Call Flow</h3></center>")
-	gen_report.write("<html><table align ='center'  border='1' width='70%'> <center><h1>Inbound Build Acceptance Automation</h1><br/></table>") 
+	gen_result.write("<html> <center><h1>Build Acceptance Test</h1> <h3>Call Flow</h3></center>")
+	gen_report.write("<html><table align ='center'  border='1' width='70%'> <center><h1>Build Acceptance Test</h1><br/></table>") 
 	gen_report.write("<br/><table  align='center' width='35%'><tr><td align='center'><font size='4'><b>Call Flow</b></font></td></tr></table>")
 	z= 0
-	with open('Data File.csv', 'rb') as f:
+	with open(foldername+'/Data File.csv', 'rb') as f:
 		reader = csv.reader(f)
 		next(reader, None)
 		y= 1;
@@ -124,8 +124,12 @@ def excel():
 					y+=1
 	testcases = y - 1
 if __name__ == "__main__":
-	main()
-	excel()
+	if len(sys.argv)==0:
+		print("please pass folder name as argument")
+		return
+	foldername=sys.argv[1]
+	main(foldername)
+	excel(foldername)
 	if exec_counter == testcases:
 		getcontext().prec = 3
 		percentage = Decimal(overall_passed)/Decimal(testcases) * 100
